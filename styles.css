@@ -19,38 +19,43 @@ header {
   text-align: center; /* Ensure everything is centered in the header */
 }
 
+/* Title Styling */
 .title {
-  border: 1px solid #e1e2de;
   font-size: 2em;
   padding: 5px;
   margin: 0;
 }
 
+/* Head Container */
 .HeadCont {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap ;
+  flex-direction: row; /* Align elements side by side */
+  align-items: center;
   width: 100%;
 }
 
 /* Logo Styling */
 .logo {
-  display: flex;
-  margin: 0 auto 20px auto; /* Center the logo with margin below */
-  height: 200px; /* Increase the size of the logo */
+  height: 200px; /* Reduce size to match mock-up */
+  margin-right: 20px; /* Space between logo and title/nav */
 }
 
+/* Title and Navigation Container */
 .tag-navCont {
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* Align title and nav to the left */
 }
 
+
+/* Navigation Container */
 .nav-container-header {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Align nav to the left */
   padding: 10px;
-  background-color: #2d2c2a; /* Updated color */
+  background-color: #2d2c2a;
   border: 1px solid #e1e2de;
+  margin-top: 10px; /* Add space between title and nav */
 }
 
 .nav-container-footer {
@@ -199,7 +204,18 @@ padding-top: 20px;
 }
 
 /* Responsive Styles */
+
 @media screen and (max-width: 768px) {
+
+  .HeadCont {
+    display: flex;
+    flex-direction: column; /* Align elements side by side */
+    align-items: center;
+    width: 100%;
+  }
+
+
+
   .A-grid {
     grid-template-columns: 1fr;
   }
