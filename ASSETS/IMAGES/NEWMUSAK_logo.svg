@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 534.9 534.9">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #231f20;
+      }
+
+      .cls-3 {
+        fill: #9e9d9e;
+      }
+
+      .cls-2, .cls-4 {
+        font-family: ArialMT, Arial;
+        font-size: 34.27px;
+      }
+
+      .cls-5, .cls-6, .cls-7, .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-8 {
+        stroke-width: 2px;
+      }
+
+      .cls-8, .cls-6, .cls-7, .cls-9, .cls-10 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-8, .cls-6, .cls-9, .cls-10 {
+        stroke: #231f20;
+      }
+
+      .cls-8, .cls-9 {
+        fill: none;
+      }
+
+      .cls-7 {
+        stroke: #6b6d64;
+        stroke-width: .75px;
+      }
+
+      .cls-9, .cls-10 {
+        stroke-width: 3px;
+      }
+
+      .cls-10 {
+        fill: #e1e2de;
+      }
+    </style>
+  </defs>
+  <g id="Layer_4">
+    <g>
+      <rect class="cls-7" x=".38" y=".38" width="534.15" height="534.15"/>
+      <line class="cls-8" x1="407.02" y1="223.58" x2="486.02" y2="223.58"/>
+      <line class="cls-8" x1="407.02" y1="243.56" x2="486.02" y2="243.56"/>
+      <line class="cls-8" x1="407.02" y1="263.54" x2="486.02" y2="263.54"/>
+      <line class="cls-8" x1="407.02" y1="283.52" x2="486.02" y2="283.52"/>
+      <line class="cls-8" x1="407.02" y1="303.49" x2="486.02" y2="303.49"/>
+      <line class="cls-9" x1="56.23" y1="263.54" x2="108.99" y2="263.54"/>
+      <polyline class="cls-1" points="101.92 249.4 116.06 263.54 101.92 277.67"/>
+      <g>
+        <text class="cls-2" transform="translate(268.62 295.12)"><tspan x="0" y="0">NEW</tspan><tspan x="0" y="41.13">MUZAK</tspan></text>
+        <polygon class="cls-10" points="393.04 193.23 257.98 268.45 122.92 193.23 257.98 124.27 393.04 193.23"/>
+        <polyline class="cls-9" points="395.67 336.39 257.98 412.63 120.34 336.5"/>
+        <line class="cls-9" x1="121.26" y1="193.23" x2="121.26" y2="337.41"/>
+        <line class="cls-9" x1="394.79" y1="193.23" x2="394.79" y2="337.41"/>
+        <line class="cls-9" x1="257.98" y1="268.45" x2="257.98" y2="412.63"/>
+        <circle class="cls-1" cx="187.72" cy="303.49" r="36.05"/>
+        <ellipse class="cls-1" cx="258.12" cy="194.58" rx="60.92" ry="38.29"/>
+        <ellipse class="cls-1" cx="151.67" cy="193.23" rx="9.05" ry="5.69"/>
+        <rect class="cls-6" x="147.93" y="191.45" width="115.25" height="3.86" rx="1.93" ry="1.93"/>
+        <rect class="cls-5" x="263.17" y="189.52" width="12.29" height="7.71" rx="1.37" ry="1.37"/>
+        <polyline class="cls-3" points="271.18 197.78 269.26 201.59 267.45 197.78"/>
+        <text class="cls-4" transform="translate(158.4 315.74)"><tspan x="0" y="0">&lt;a&gt;</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
