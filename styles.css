@@ -130,11 +130,14 @@ footer {
   min-height: 900px;
   width: 100%;
   margin-bottom: 20px;
+  
 }
 
 .A-column1 {
+  border: 1px solid gray;
   background-color: #2d2c2a;
   padding: 20px;
+  margin-right: 3px;
   color: white;
   font-size: .9em;
   font-weight: 100;
@@ -151,19 +154,21 @@ footer {
   color: #59584f;
   padding: 10px;
   margin-right: 1px;
+  
 }
-
-
 
 .stacked2, .stacked3, .stacked4 {
   border: 1px solid #d0d1cd;
   margin-top:2px;
   margin-right: 1px;
-
   padding: 2px;
 }
 
-
+.transport {
+  border: 1px solid gray;
+  width: 150px;
+  height: 150px;
+}
 
 
 
@@ -206,6 +211,12 @@ padding-top: 20px;
 /* Responsive Styles */
 
 @media screen and (max-width: 768px) {
+
+
+  .logo {
+    height: 200px; /* Reduce size to match mock-up */
+   width: 100%;
+  }
 
   .HeadCont {
     display: flex;
