@@ -143,7 +143,7 @@ footer {
 /* Section A */
 .A-grid {
   display: grid;
-  grid-template-columns: 85% 15%;
+  grid-template-columns: 83% 17%;
   gap: 5px;
   min-height: 900px;
   width: 100%;
@@ -167,32 +167,29 @@ footer {
   gap: 5px;
 }
 
-.stacked {
+.console {
+  display: grid;
+  grid-template-columns: repeat(1fr); /* Creates 2 columns */
+  gap: 5px; /* Adds space between grid items */
   background-color: #e1e2de;
   color: #59584f;
   padding: 10px;
   margin-right: 1px;
-  
-
 }
 
 /* Transport Grid */
 .transport {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* 3 columns */
   grid-template-rows: repeat(3, 1fr);
-  /* 3 rows */
   gap: 3px;
-  /* Space between grid items */
-
   width: 100%;
-  /* Ensures it fills the container */
   max-width: 125px;
-  /* Max size to maintain the square */
-  margin: 0 auto;
-  /* Center the grid */
+  align-self: start;
+  justify-self: start;
+  margin-left: 5px;
 }
+
 
 .play-button,
 .play-lib-button,
@@ -211,18 +208,14 @@ footer {
 }
 
 
-
-
-
-
 .TranStatus,
 .FileName,
 .Time {
   border: 1px solid gray;
   padding: 5px;
-  margin: 5px auto;
+  margin: 1px auto;
   /* Center the element horizontally */
-  width: 45%;
+  width: 100%;
   text-align: center;
   font-size: 0.7em;
 }
@@ -230,12 +223,33 @@ footer {
 .PlayerInfo {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
 }
 
+/* =========== new things I am adding ... +++++++++ */
 
-.grid-item {
+.volume-toggle {
+  border: 1px solid gray;
+  width: 20px;
+  height: 150px;
+  font-size: .7em;
   
+}
+
+.turntable {
+  border: 1px solid gray; 
+  width: 150px;
+  height: 150px;
+  font-size: .7em;
+}
+
+.playlist {
+  border: 1px solid gray; 
+  width: 50px;
+  height: 150px;
+  font-size: .7em;
+
+}
+.grid-item {
   color: white;
   display: flex;
   align-items: center;
@@ -248,8 +262,9 @@ footer {
 
 .grid-item:hover {
   border: 1px solid gold;
-
 }
+
+
 .stacked2,
 .stacked3,
 .stacked4 {
@@ -301,6 +316,10 @@ footer {
 /* Responsive Styles */
 
 @media screen and (max-width: 768px) {
+
+  .stacked {
+    grid-template-columns: 1fr 1fr; /* Stacks items in one column on smaller screens */
+  }
 
 
   .logo {
