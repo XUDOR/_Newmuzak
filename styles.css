@@ -169,12 +169,12 @@ footer {
 
 .console {
   display: grid;
-  grid-template-columns: repeat(1fr); /* Creates 2 columns */
-  gap: 5px; /* Adds space between grid items */
+  grid-template-columns:  1fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
   background-color: #e1e2de;
   color: #59584f;
   padding: 10px;
-  margin-right: 1px;
 }
 
 /* Transport Grid */
@@ -182,14 +182,10 @@ footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 3px;
-  width: 100%;
-  max-width: 125px;
-  align-self: start;
-  justify-self: start;
-  margin-left: 5px;
+  gap: 5px;
+  width: 120px;
+  height: 120px;
 }
-
 
 .play-button,
 .play-lib-button,
@@ -207,7 +203,6 @@ footer {
   margin: 0 auto; /* Center the SVG within the grid item */
 }
 
-
 .TranStatus,
 .FileName,
 .Time {
@@ -221,34 +216,44 @@ footer {
 }
 
 .PlayerInfo {
+  grid-column: 2 / 3; /* Second column */
+  grid-row: 1 / 2; /* First row */
   display: flex;
   flex-direction: column;
 }
 
-/* =========== new things I am adding ... +++++++++ */
+/* =========== new things I am adding ... +++++++++ 
 
 .volume-toggle {
+  grid-column: 1 / 2; 
+  grid-row: 2 / 3; 
   border: 1px solid gray;
   width: 20px;
   height: 150px;
   font-size: .7em;
-  
 }
 
 .turntable {
-  border: 1px solid gray; 
+  grid-column: 2 / 3; 
+  grid-row: 2 / 3; 
+  border: 1px solid gray;
   width: 150px;
   height: 150px;
   font-size: .7em;
 }
 
 .playlist {
-  border: 1px solid gray; 
-  width: 50px;
+  grid-column: 2 / 3; 
+  grid-row: 3 / 4; 
+  border: 1px solid gray;
+  width: 50%; 
   height: 150px;
   font-size: .7em;
-
 }
+
+*/
+
+
 .grid-item {
   color: white;
   display: flex;
