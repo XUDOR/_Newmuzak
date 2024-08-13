@@ -156,6 +156,28 @@ footer {
   margin-right: 1px;
   
 }
+/* Transport Grid */
+.transport {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: repeat(3, 1fr); /* 3 rows */
+  gap: 5px; /* Space between grid items */
+  border: 1px solid gray;
+  width: 100%; /* Ensures it fills the container */
+  max-width: 150px; /* Max size to maintain the square */
+  margin: 0 auto; /* Center the grid */
+}
+
+.grid-item {
+  background-color: #59584f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Make sure each item fills its grid cell */
+}
+
+
 
 .stacked2, .stacked3, .stacked4 {
   border: 1px solid #d0d1cd;
@@ -163,13 +185,6 @@ footer {
   margin-right: 1px;
   padding: 2px;
 }
-
-.transport {
-  border: 1px solid gray;
-  width: 150px;
-  height: 150px;
-}
-
 
 
 .Block2, .Block3 {
