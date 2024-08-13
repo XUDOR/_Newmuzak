@@ -162,11 +162,21 @@ footer {
   grid-template-columns: repeat(3, 1fr); /* 3 columns */
   grid-template-rows: repeat(3, 1fr); /* 3 rows */
   gap: 5px; /* Space between grid items */
-  border: 1px solid gray;
+  
   width: 100%; /* Ensures it fills the container */
   max-width: 150px; /* Max size to maintain the square */
   margin: 0 auto; /* Center the grid */
 }
+
+.TranStatus, .FileName, .Time {
+  border: 1px solid gray;
+  padding: 5px;
+  margin: 5px auto; /* Center the element horizontally */
+  width: 45%;
+  text-align: center;
+  font-size: 0.7em;
+}
+
 
 .grid-item {
   background-color: #59584f;
@@ -184,6 +194,7 @@ footer {
   margin-top:2px;
   margin-right: 1px;
   padding: 2px;
+  height: 175px;
 }
 
 
