@@ -1,11 +1,14 @@
 /* Global Box-Sizing */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 /* General Styles */
 body {
-  overflow-y: auto; /* Ensure vertical scroll when needed */
+  overflow-y: auto;
+  /* Ensure vertical scroll when needed */
   background-color: black;
   color: #D8DCD2;
   margin: 0;
@@ -15,8 +18,10 @@ body {
 
 header {
   background-color: #2d2c2a;
-  padding: 25px 10px; /* Add padding to provide space around the logo */
-  text-align: center; /* Ensure everything is centered in the header */
+  padding: 25px 10px;
+  /* Add padding to provide space around the logo */
+  text-align: center;
+  /* Ensure everything is centered in the header */
 }
 
 /* Title Styling */
@@ -29,33 +34,39 @@ header {
 /* Head Container */
 .HeadCont {
   display: flex;
-  flex-direction: row; /* Align elements side by side */
+  flex-direction: row;
+  /* Align elements side by side */
   align-items: center;
   width: 100%;
 }
 
 /* Logo Styling */
 .logo {
-  height: 200px; /* Reduce size to match mock-up */
-  margin-right: 20px; /* Space between logo and title/nav */
+  height: 200px;
+  /* Reduce size to match mock-up */
+  margin-right: 20px;
+  /* Space between logo and title/nav */
 }
 
 /* Title and Navigation Container */
 .tag-navCont {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align title and nav to the left */
+  align-items: flex-start;
+  /* Align title and nav to the left */
 }
 
 
 /* Navigation Container */
 .nav-container-header {
   display: flex;
-  justify-content: flex-start; /* Align nav to the left */
+  justify-content: flex-start;
+  /* Align nav to the left */
   padding: 10px;
   background-color: #2d2c2a;
   border: 1px solid #e1e2de;
-  margin-top: 10px; /* Add space between title and nav */
+  margin-top: 10px;
+  /* Add space between title and nav */
 }
 
 .nav-container-footer {
@@ -63,9 +74,10 @@ header {
   justify-content: flex-start;
   padding: 15px;
   background-color: #2d2c2a;
-  width: auto; /* Adjust width to fit content */
+  width: auto;
+  /* Adjust width to fit content */
   align-self: start;
-  
+
 }
 
 nav {
@@ -80,26 +92,28 @@ nav ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  
+
 }
 
 nav li {
   text-align: left;
   font-weight: 100;
-  
+
 }
 
 nav a {
   display: block;
   padding: 5px 10px;
-  color: #D8DCD2; /* Updated text color for contrast */
+  color: #D8DCD2;
+  /* Updated text color for contrast */
   text-decoration: none;
   font-weight: 400;
 }
 
 nav a:hover {
   background-color: #d0d1cd;
-  color: #2d2c2a; /* Updated text color for contrast */
+  color: #2d2c2a;
+  /* Updated text color for contrast */
 }
 
 /* Footer Styles */
@@ -111,15 +125,19 @@ footer {
   bottom: 0;
   width: 100%;
   display: flex;
-  align-items: center; /* Vertically align content */
-  justify-content: space-between; /* Space between nav and credit */
-  padding: 0 20px; /* Add some padding for spacing */
+  align-items: center;
+  /* Vertically align content */
+  justify-content: space-between;
+  /* Space between nav and credit */
+  padding: 0 20px;
+  /* Add some padding for spacing */
 }
 
 
 .credit {
   font-size: .7em;
-  margin-left: auto; /* Push credit text to the far right */
+  margin-left: auto;
+  /* Push credit text to the far right */
 }
 
 /* Section A */
@@ -130,7 +148,7 @@ footer {
   min-height: 900px;
   width: 100%;
   margin-bottom: 20px;
-  
+
 }
 
 .A-column1 {
@@ -154,24 +172,34 @@ footer {
   color: #59584f;
   padding: 10px;
   margin-right: 1px;
-  
+
 }
+
 /* Transport Grid */
 .transport {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  grid-template-rows: repeat(3, 1fr); /* 3 rows */
-  gap: 5px; /* Space between grid items */
-  
-  width: 100%; /* Ensures it fills the container */
-  max-width: 150px; /* Max size to maintain the square */
-  margin: 0 auto; /* Center the grid */
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 columns */
+  grid-template-rows: repeat(3, 1fr);
+  /* 3 rows */
+  gap: 5px;
+  /* Space between grid items */
+
+  width: 100%;
+  /* Ensures it fills the container */
+  max-width: 150px;
+  /* Max size to maintain the square */
+  margin: 0 auto;
+  /* Center the grid */
 }
 
-.TranStatus, .FileName, .Time {
+.TranStatus,
+.FileName,
+.Time {
   border: 1px solid gray;
   padding: 5px;
-  margin: 5px auto; /* Center the element horizontally */
+  margin: 5px auto;
+  /* Center the element horizontally */
   width: 45%;
   text-align: center;
   font-size: 0.7em;
@@ -185,27 +213,37 @@ footer {
 
 
 .grid-item {
-  background-color: #59584f;
+  
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%; /* Make sure each item fills its grid cell */
+  height: 100%;
+  cursor: pointer;
+
+  /* Make sure each item fills its grid cell */
+}
+
+.grid-item:hover {
+  border: 1px solid gold;
+
 }
 
 
-
-.stacked2, .stacked3, .stacked4 {
+.stacked2,
+.stacked3,
+.stacked4 {
   border: 1px solid #d0d1cd;
-  margin-top:2px;
+  margin-top: 2px;
   margin-right: 1px;
   padding: 2px;
   height: 175px;
 }
 
 
-.Block2, .Block3 {
-padding-top: 20px;
+.Block2,
+.Block3 {
+  padding-top: 20px;
 }
 
 
@@ -218,8 +256,8 @@ padding-top: 20px;
   min-height: 900px;
   width: 100%;
   margin-top: 10px;
-  
-  
+
+
 }
 
 /* Section C */
@@ -246,28 +284,30 @@ padding-top: 20px;
 
 
   .logo {
-    height: 200px; /* Reduce size to match mock-up */
-   width: 100%;
+    height: 200px;
+    /* Reduce size to match mock-up */
+    width: 100%;
   }
 
   .HeadCont {
     display: flex;
-    flex-direction: column; /* Align elements side by side */
+    flex-direction: column;
+    /* Align elements side by side */
     align-items: center;
     width: 100%;
   }
 
-
-
   .A-grid {
     grid-template-columns: 1fr;
+    height: 200px;
   }
 
   .A-column2 {
     grid-template-rows: 1fr;
   }
 
-  .B-grid, .C-grid {
+  .B-grid,
+  .C-grid {
     grid-template-columns: 1fr;
   }
 }
