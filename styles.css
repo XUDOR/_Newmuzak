@@ -183,16 +183,37 @@ footer {
   /* 3 columns */
   grid-template-rows: repeat(3, 1fr);
   /* 3 rows */
-  gap: 5px;
+  gap: 3px;
   /* Space between grid items */
 
   width: 100%;
   /* Ensures it fills the container */
-  max-width: 150px;
+  max-width: 125px;
   /* Max size to maintain the square */
   margin: 0 auto;
   /* Center the grid */
 }
+
+.play-button,
+.play-lib-button,
+.next-button,
+.stop-button,
+.repeat-button,
+.before-button,
+.pause-button,
+.before30-button,
+.next30-button 
+{
+  width: 40px; /* Set the width to 60px */
+  height: 40px; /* Set the height to 60px */
+  display: block;
+  margin: 0 auto; /* Center the SVG within the grid item */
+}
+
+
+
+
+
 
 .TranStatus,
 .FileName,
