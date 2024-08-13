@@ -30,3 +30,51 @@ function generateGridContent(containerSelector, contentArray) {
 // Generate content for Sections B and C
 generateGridContent('.B-grid', sectionBContent);
 generateGridContent('.C-grid', sectionCContent);
+
+
+
+// PLAYER 
+
+// Initialize the audio element
+const audio = new Audio('ASSETS/SOUNDS/NFT1_1.mp3');
+
+// Get the control elements
+const playButton = document.getElementById('play-button');
+const stopButton = document.getElementById('stop-button');
+const fileNameDisplay = document.querySelector('.FileName');
+const timeDisplay = document.querySelector('.Time');
+const tranStatus = document.querySelector('.TranStatus');
+
+// Set initial file name and status
+fileNameDisplay.textContent = `File: NFT1_1.mp3`;
+tranStatus.textContent = 'Stopped';
+
+// Play button functionality
+playButton.addEventListener('click', () => {
+  audio.play();
+  tranStatus.textContent = 'Playing';
+});
+
+// Stop button functionality
+stopButton.addEventListener('click', () => {
+  audio.pause();
+  audio.currentTime = 0; // Reset to the beginning
+  tranStatus.textContent = 'Stopped';
+});
+
+// Update time display as the audio plays
+audio.addEventListener('timeupdate', () => {
+  const currentTime = formatTime(audio.currentTime);
+  const duration = formatTime(audio.duration);
+  timeDisplay.textContent = `Time: ${currentTime} / ${duration}`;
+});
+
+// Helper function to format time in minutes:seconds
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+
+// Additional controls (Next, Before, etc.) can be added similarly...
+
