@@ -177,6 +177,12 @@ footer {
   font-size: 0.7em;
 }
 
+.PlayerInfo {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
 
 .grid-item {
   background-color: #59584f;
