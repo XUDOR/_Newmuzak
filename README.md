@@ -1,4 +1,4 @@
 # _Newmuzak
-HTML | CSS | JS => Music Blog . AudioPlayer
+HTML | CSS | JS | NODE | EXPRESS => Music Blog . AudioPlayer
 ------
-v.3A
+v.4+ >> node / express / render deploy 
