@@ -155,15 +155,12 @@ footer {
 
 .console {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* Two columns */
-  grid-template-rows: auto auto;
-  /* Two rows */
-  gap: 10px;
-  /* Adds space between grid items */
+  grid-template-columns: 50% 50%; /* Two columns for the top row, each 50% */
+  grid-template-rows: auto auto; /* Two rows */
+  gap: 5px; /* Adds space between grid items */
   background-color: #e1e2de;
   color: #59584f;
-  padding: 10px;
+  padding: 5px;
   margin-right: 1px;
 }
 
@@ -214,7 +211,7 @@ footer {
   /* First row */
   display: flex;
   flex-direction: column;
-  max-width: 125px;
+  max-width: 150px;
 }
 
 
@@ -351,3 +348,25 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
