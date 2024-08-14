@@ -8,7 +8,6 @@
 /* General Styles */
 body {
   overflow-y: auto;
-  /* Ensure vertical scroll when needed */
   background-color: black;
   color: #D8DCD2;
   margin: 0;
@@ -19,9 +18,7 @@ body {
 header {
   background-color: #2d2c2a;
   padding: 25px 10px;
-  /* Add padding to provide space around the logo */
   text-align: center;
-  /* Ensure everything is centered in the header */
 }
 
 /* Title Styling */
@@ -35,7 +32,6 @@ header {
 .HeadCont {
   display: flex;
   flex-direction: row;
-  /* Align elements side by side */
   align-items: center;
   width: 100%;
 }
@@ -43,17 +39,14 @@ header {
 /* Logo Styling */
 .logo {
   height: 200px;
-  /* Reduce size to match mock-up */
   margin-right: 20px;
-  /* Space between logo and title/nav */
 }
 
-/* Title and Navigation Container */
 .tag-navCont {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* Align title and nav to the left */
+ 
 }
 
 
@@ -61,12 +54,10 @@ header {
 .nav-container-header {
   display: flex;
   justify-content: flex-start;
-  /* Align nav to the left */
   padding: 10px;
   background-color: #2d2c2a;
   border: 1px solid #e1e2de;
   margin-top: 10px;
-  /* Add space between title and nav */
 }
 
 .nav-container-footer {
@@ -75,7 +66,6 @@ header {
   padding: 15px;
   background-color: #2d2c2a;
   width: auto;
-  /* Adjust width to fit content */
   align-self: start;
 
 }
@@ -105,7 +95,6 @@ nav a {
   display: block;
   padding: 5px 10px;
   color: #D8DCD2;
-  /* Updated text color for contrast */
   text-decoration: none;
   font-weight: 400;
 }
@@ -113,7 +102,6 @@ nav a {
 nav a:hover {
   background-color: #d0d1cd;
   color: #2d2c2a;
-  /* Updated text color for contrast */
 }
 
 /* Footer Styles */
@@ -126,18 +114,16 @@ footer {
   width: 100%;
   display: flex;
   align-items: center;
-  /* Vertically align content */
   justify-content: space-between;
-  /* Space between nav and credit */
   padding: 0 20px;
-  /* Add some padding for spacing */
+ 
 }
 
 
 .credit {
   font-size: .7em;
   margin-left: auto;
-  /* Push credit text to the far right */
+ 
 }
 
 /* Section A */
@@ -169,12 +155,13 @@ footer {
 
 .console {
   display: grid;
-  grid-template-columns:  1fr 1fr;
-  grid-template-rows: auto 1fr;
-  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 10px; /* Adds space between grid items */
   background-color: #e1e2de;
   color: #59584f;
   padding: 10px;
+  margin-right: 1px;
 }
 
 /* Transport Grid */
@@ -182,10 +169,13 @@ footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 5px;
-  width: 120px;
-  height: 120px;
+  gap: 3px;
+  width: 100%;
+  max-width: 125px;
+  align-self: start;
+  justify-self: start;
 }
+
 
 .play-button,
 .play-lib-button,
@@ -197,10 +187,10 @@ footer {
 .before30-button,
 .next30-button 
 {
-  width: 40px; /* Set the width to 60px */
-  height: 40px; /* Set the height to 60px */
+  width: 40px; 
+  height: 40px; 
   display: block;
-  margin: 0 auto; /* Center the SVG within the grid item */
+  margin: 0 auto;
 }
 
 .TranStatus,
@@ -209,49 +199,18 @@ footer {
   border: 1px solid gray;
   padding: 5px;
   margin: 1px auto;
-  /* Center the element horizontally */
+ 
   width: 100%;
   text-align: center;
   font-size: 0.7em;
 }
 
 .PlayerInfo {
-  grid-column: 2 / 3; /* Second column */
-  grid-row: 1 / 2; /* First row */
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 125px;
 }
-
-/* =========== new things I am adding ... +++++++++ 
-
-.volume-toggle {
-  grid-column: 1 / 2; 
-  grid-row: 2 / 3; 
-  border: 1px solid gray;
-  width: 20px;
-  height: 150px;
-  font-size: .7em;
-}
-
-.turntable {
-  grid-column: 2 / 3; 
-  grid-row: 2 / 3; 
-  border: 1px solid gray;
-  width: 150px;
-  height: 150px;
-  font-size: .7em;
-}
-
-.playlist {
-  grid-column: 2 / 3; 
-  grid-row: 3 / 4; 
-  border: 1px solid gray;
-  width: 50%; 
-  height: 150px;
-  font-size: .7em;
-}
-
-*/
 
 
 .grid-item {
@@ -261,12 +220,25 @@ footer {
   justify-content: center;
   height: 100%;
   cursor: pointer;
-
-  /* Make sure each item fills its grid cell */
 }
 
 .grid-item:hover {
   border: 1px solid gold;
+}
+
+
+.volumeToggle {
+  border: 1px solid gray;
+  width: 25px;
+  height: 150px;
+}
+
+.turntable {
+  border: 1px solid gray;
+}
+
+.playlist {
+  border: 1px solid gray;
 }
 
 
@@ -322,7 +294,7 @@ footer {
 
 @media screen and (max-width: 768px) {
 
-  .stacked {
+  .console {
     grid-template-columns: 1fr 1fr; /* Stacks items in one column on smaller screens */
   }
 
