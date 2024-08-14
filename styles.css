@@ -299,6 +299,19 @@ flex-wrap: wrap;
 
 }
 
+.beat1 {
+  background-color: #D8DCD2;
+  color: #4a4a4a;
+  font-size: .8em;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+}
+
 
 .Block2,
 .Block3 {
@@ -315,8 +328,6 @@ flex-wrap: wrap;
   min-height: 900px;
   width: 100%;
   margin-top: 10px;
-
-
 }
 
 /* Section C */
