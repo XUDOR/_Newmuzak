@@ -1,5 +1,18 @@
 {
+  "name": "_Newmuzak",
+  "version": "1.0.0",
+  "description": "A brief description of my project",
+  "engines": {
+    "node": ">=20.11.1 <21"
+  },
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
   }
 }
