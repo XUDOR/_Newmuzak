@@ -129,7 +129,7 @@ footer {
 /* Section A */
 .A-grid {
   display: grid;
-  grid-template-columns: 83% 17%;
+  grid-template-columns: 85% 15%;
   gap: 5px;
   min-height: 900px;
   width: 100%;
@@ -154,15 +154,28 @@ footer {
 }
 
 .console {
-  display: grid;
-  grid-template-columns: 50% 50%; /* Two columns for the top row, each 50% */
-  grid-template-rows: auto auto; /* Two rows */
-  gap: 5px; /* Adds space between grid items */
+  display: flex;
+  flex-direction: column;
   background-color: #e1e2de;
   color: #59584f;
   padding: 5px;
-  margin-right: 1px;
+  min-height: 80%;
 }
+
+
+.conCont1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+ 
+.conCont2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: start;
+}
+
 
 /* Transport Grid */
 .transport {
@@ -174,6 +187,7 @@ footer {
   max-width: 125px;
   align-self: start;
   justify-self: start;
+  margin: 5px;
 }
 
 
@@ -205,13 +219,12 @@ footer {
 }
 
 .PlayerInfo {
-  grid-column: 2 / span 1;
-  /* Second column */
-  grid-row: 1 / span 1;
-  /* First row */
   display: flex;
   flex-direction: column;
-  max-width: 150px;
+  justify-content: center;
+  align-items: start;
+  max-width: 100%;
+  margin: 5px;
 }
 
 
@@ -236,29 +249,43 @@ footer {
 
 /* Bottom row items */
 .volumeToggle {
-  grid-column: 1 / span 1;
-  grid-row: 2 / span 1;
-  width: 25px;
-  height: 150px;
+flex-wrap: wrap;
+  min-width: 95%;
+  height: 20px;
+  margin: 5px;
+  padding: 2px;
   border: 1px solid gray;
+  text-align: left;
+  font-weight: 400;
+  font-size: .8em;
+  
 }
 
 .turntable {
+  display: inline-block;
+  min-width: 150px;
+  min-height: 150px;
   border: 1px solid gray;
-  grid-column: 2 / span 1;
-  grid-row: 2 / span 1;
-  width: 125px;
-  height: 125px;
+  align-self: start;
+  justify-self: start;
+  margin: 5px;
+  padding: 5px;
+  font-weight: 400;
+  font-size: .8em;
 }
 
 
 .playlist {
+  display: flex;
+  min-width: 150px;
+  min-height: 80px;
+  margin: 5px;
+  padding: 5px;
   border: 1px solid gray;
-  grid-column: 1 / span 2;
-  grid-row: 3 / span 1;
-  width: 75px;
-  height: 125px;
-  
+  align-self: center;
+  justify-self: center;
+  font-weight: 400;
+  font-size: .8em;
 }
 
 
@@ -315,7 +342,7 @@ footer {
 @media screen and (max-width: 768px) {
 
   .console {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     /* Stacks items in one column on smaller screens */
   }
 
@@ -324,6 +351,18 @@ footer {
     height: 200px;
     /* Reduce size to match mock-up */
     width: 100%;
+  }
+
+  .volumeToggle,
+  .turntable,
+  .playlist {
+    width: 100%;
+    /* Full width on mobile */
+    height: auto;
+    /* Let height adjust automatically */
+    margin-bottom: 10px;
+    /* Add space between stacked items */
+    flex-wrap: wrap;
   }
 
   .HeadCont {
@@ -348,25 +387,3 @@ footer {
     grid-template-columns: 1fr;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
