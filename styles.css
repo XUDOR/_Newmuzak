@@ -46,7 +46,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
- 
+
 }
 
 
@@ -116,14 +116,14 @@ footer {
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
- 
+
 }
 
 
 .credit {
   font-size: .7em;
   margin-left: auto;
- 
+
 }
 
 /* Section A */
@@ -156,8 +156,11 @@ footer {
 .console {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 10px; /* Adds space between grid items */
+  /* Two columns */
+  grid-template-rows: auto auto;
+  /* Two rows */
+  gap: 10px;
+  /* Adds space between grid items */
   background-color: #e1e2de;
   color: #59584f;
   padding: 10px;
@@ -185,10 +188,9 @@ footer {
 .before-button,
 .pause-button,
 .before30-button,
-.next30-button 
-{
-  width: 40px; 
-  height: 40px; 
+.next30-button {
+  width: 40px;
+  height: 40px;
   display: block;
   margin: 0 auto;
 }
@@ -199,16 +201,19 @@ footer {
   border: 1px solid gray;
   padding: 5px;
   margin: 1px auto;
- 
+
   width: 100%;
   text-align: center;
   font-size: 0.7em;
 }
 
 .PlayerInfo {
+  grid-column: 2 / span 1;
+  /* Second column */
+  grid-row: 1 / span 1;
+  /* First row */
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   max-width: 125px;
 }
 
@@ -223,22 +228,40 @@ footer {
 }
 
 .grid-item:hover {
-  border: 1px solid gold;
+  opacity: 0.7;
+  /* Makes the element slightly transparent on hover */
 }
 
+.grid-item:active {
+  opacity: 0.7;
+  /* Makes the element slightly transparent when tapped on mobile */
+}
 
+/* Bottom row items */
 .volumeToggle {
-  border: 1px solid gray;
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
   width: 25px;
   height: 150px;
+  border: 1px solid gray;
 }
 
 .turntable {
   border: 1px solid gray;
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+  width: 125px;
+  height: 125px;
 }
+
 
 .playlist {
   border: 1px solid gray;
+  grid-column: 1 / span 2;
+  grid-row: 3 / span 1;
+  width: 75px;
+  height: 125px;
+  
 }
 
 
@@ -249,7 +272,7 @@ footer {
   margin-top: 2px;
   margin-right: 1px;
   padding: 2px;
-  
+
 }
 
 
@@ -295,7 +318,8 @@ footer {
 @media screen and (max-width: 768px) {
 
   .console {
-    grid-template-columns: 1fr 1fr; /* Stacks items in one column on smaller screens */
+    grid-template-columns: 1fr 1fr;
+    /* Stacks items in one column on smaller screens */
   }
 
 
