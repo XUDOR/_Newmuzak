@@ -343,6 +343,8 @@ flex-wrap: wrap;
 
   .console {
     grid-template-columns: 1fr;
+    width: 100%;
+    height: auto;
     /* Stacks items in one column on smaller screens */
   }
 
@@ -356,7 +358,7 @@ flex-wrap: wrap;
   .volumeToggle,
   .turntable,
   .playlist {
-    width: 100%;
+    width: 95%;
     /* Full width on mobile */
     height: auto;
     /* Let height adjust automatically */
