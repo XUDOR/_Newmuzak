@@ -137,33 +137,86 @@ footer {
 
 }
 
-/* ============AUDIO-VISUYALIZER */
+/* ============AUDIO-VISUALIZER */
 
+/* Canvas container */
 .A-column1 {
+  position: relative;
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
   border: 1px solid gray;
-  background-color: #2d2c2a;
-  padding: 20px;
-  margin-right: 3px;
-  color: white;
   overflow: hidden;
+  animation: backgroundAnimation 10s infinite alternate;
 }
 
-
-#line {
-  stroke-width: 1;
-  stroke-linecap: round;
-  transform-origin: bottom left;
-  transform: rotate(45deg); /* Rotates the line to a 45-degree angle */
+/* Background animation */
+@keyframes backgroundAnimation {
+  0% {
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  }
+  50% {
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+  }
+  100% {
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  }
 }
 
+/* Fall effect animation */
+@keyframes fallEffect {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
 
-#audio-visualizer {
+.A-column1 canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  animation: gridPulse 3s infinite ease-in-out;
 }
+
+@keyframes gridPulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Overlay effects */
+.A-column1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  animation: glowEffect 2s infinite alternate;
+}
+
+@keyframes glowEffect {
+  0% {
+    filter: blur(2px);
+  }
+  100% {
+    filter: blur(4px);
+  }
+}
+
+
+
+/*=========================================================================*/
 
 .A-column2 {
   display: grid;
@@ -367,6 +420,7 @@ flex-wrap: wrap;
 }
 
 /* Responsive Styles */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 @media screen and (max-width: 768px) {
 
