@@ -1,6 +1,5 @@
 //++++++++++++++ script.js
 
-
 // Content arrays for Sections B and C
 const sectionBContent = [
   "Post 1", "Post 2", "Post 3", "Post 4",
@@ -31,8 +30,6 @@ function generateGridContent(containerSelector, contentArray) {
 generateGridContent('.B-grid', sectionBContent);
 generateGridContent('.C-grid', sectionCContent);
 
-
-
 // PLAYER 
 
 // Initialize the audio element
@@ -51,6 +48,9 @@ tranStatus.textContent = 'Stopped';
 
 // Play button functionality
 playButton.addEventListener('click', () => {
+  if (audioContext.state === 'suspended') {
+    audioContext.resume();  // Resume audio context if it was suspended
+  }
   audio.play();
   tranStatus.textContent = 'Playing';
 });
@@ -76,5 +76,70 @@ function formatTime(time) {
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
-// Additional controls (Next, Before, etc.) can be added similarly...
+//===================================================================
+//===================================================================
+//===================================================================
+// AUDIO VISUALIZER
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize the audio context
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Initialize the analyser
+    const analyser = audioContext.createAnalyser();
+    analyser.fftSize = 256;  // Adjust size for more/less frequency data
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+    // Connect the analyser to the audio element
+    const source = audioContext.createMediaElementSource(audio);
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    // Set up the canvas
+    const canvas = document.getElementById('audio-visualizer');
+    const canvasCtx = canvas.getContext('2d');
+
+    // Function to draw the visualization
+    function drawVisualizer() {
+        requestAnimationFrame(drawVisualizer);
+
+        analyser.getByteFrequencyData(dataArray);
+
+        canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const barWidth = canvas.width / dataArray.length;
+        const startX = 0;
+        const startY = canvas.height;
+
+        // Loop through the data array and draw each line
+        dataArray.forEach((value, index) => {
+            const height = value * 2;  // Scale the height of the line
+            const x = startX + index * barWidth;
+            const y = startY - height;
+
+            // Draw the line representing the audio data
+            canvasCtx.beginPath();
+            canvasCtx.moveTo(x, startY);
+            canvasCtx.lineTo(x, y);
+            canvasCtx.strokeStyle = `rgba(${value}, 100, 150, 0.8)`;  // Color with opacity
+            canvasCtx.lineWidth = 1 + value / 255;  // Line thickness varies with amplitude
+            canvasCtx.stroke();
+
+            // Add a blur effect
+            canvasCtx.shadowBlur = 10;
+            canvasCtx.shadowColor = `rgba(${value}, 100, 150, 0.5)`;
+
+            // Simulate the fall or decay effect by redrawing with decreased opacity
+            for (let i = 1; i <= 5; i++) {
+                canvasCtx.beginPath();
+                canvasCtx.moveTo(x, startY);
+                canvasCtx.lineTo(x, y + i * 5);  // Increment y to simulate fall
+                canvasCtx.strokeStyle = `rgba(${value}, 100, 150, ${0.8 - i * 0.15})`;
+                canvasCtx.stroke();
+            }
+        });
+    }
+
+    // Start the visualization
+    drawVisualizer();
+});
