@@ -138,21 +138,21 @@ footer {
 /* SVG container */
 .A-column1 {
   position: relative;
-  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-  border: 1px solid gray;
+  background-color: gray;
+  border: 1px solid white;
   overflow: hidden;
-  animation: backgroundAnimation 10s infinite alternate;
-  max-width: 600px;
-  max-height: 400px;
+  
+  min-width: 100%;
+  min-height: 100%;
   margin: 0 auto;
 }
 
 .A-column1 svg {
   width: 100%;
   height: auto;
-  display: block;
-  max-width: 600px;
-  max-height: 400px;
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* Background animation */
