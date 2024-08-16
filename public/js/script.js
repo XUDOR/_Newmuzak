@@ -38,7 +38,7 @@ let analyser;
 let dataArray;
 
 // Initialize the audio element
-const audio = new Audio('ASSETS/SOUNDS/NFT1_1.mp3');
+const audio = new Audio('/ASSETS/SOUNDS/NFT_MAST24-1.mp3');
 
 // Get the control elements
 const playButton = document.getElementById('play-button');
@@ -48,7 +48,7 @@ const timeDisplay = document.querySelector('.Time');
 const tranStatus = document.querySelector('.TranStatus');
 
 // Set initial file name and status
-fileNameDisplay.textContent = `File: NFT1_1.mp3`;
+fileNameDisplay.textContent = `File: NFT_MAST24-1.mp3`;
 tranStatus.textContent = 'Stopped';
 
 // Play button functionality
@@ -108,8 +108,7 @@ function createSVGVisualizer() {
   const svgNS = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(svgNS, "svg");
   svg.setAttribute("viewBox", "0 0 600 400");
-  svg.setAttribute("width", "100%");
-  svg.setAttribute("height", "auto");
+  svg.setAttribute("width", "100%");  // Set width, but leave height to be controlled by CSS
 
   const lineGroup = document.createElementNS(svgNS, "g");
   svg.appendChild(lineGroup);
@@ -160,3 +159,4 @@ function createSVGVisualizer() {
 
   drawVisualizer();
 }
+
