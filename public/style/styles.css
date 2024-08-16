@@ -126,7 +126,7 @@ footer {
 /* Section A */
 .A-grid {
   display: grid;
-  grid-template-columns: 85% 15%;
+  grid-template-columns: 75% 25%;
   gap: 5px;
   min-height: 900px;
   width: 100%;
@@ -141,7 +141,6 @@ footer {
   background-color: gray;
   border: 1px solid white;
   overflow: hidden;
-  
   min-width: 100%;
   min-height: 100%;
   margin: 0 auto;

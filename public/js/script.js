@@ -102,19 +102,23 @@ function formatTime(time) {
 //===================================================================
 //===================================================================
 //===================================================================
-// SVG-BASED AUDIO VISUALIZER
-
 function createSVGVisualizer() {
   const svgNS = "http://www.w3.org/2000/svg";
+  const container = document.querySelector('.A-column1');
+  
+  // Calculate container dimensions
+  const containerWidth = container.clientWidth;
+  const containerHeight = container.clientHeight;
+
   const svg = document.createElementNS(svgNS, "svg");
-  svg.setAttribute("viewBox", "0 0 600 400");
-  svg.setAttribute("width", "100%");  // Set width, but leave height to be controlled by CSS
+  svg.setAttribute("viewBox", `0 0 ${containerWidth} ${containerHeight}`);
+  svg.setAttribute("width", "100%");
+  svg.setAttribute("height", "100%");
 
   const lineGroup = document.createElementNS(svgNS, "g");
   svg.appendChild(lineGroup);
-
-  const container = document.querySelector('.A-column1');
-  container.innerHTML = ''; // Clear any existing canvas or SVG content
+  
+  container.innerHTML = ''; // Clear any existing content
   container.appendChild(svg);
 
   function drawVisualizer() {
@@ -129,34 +133,44 @@ function createSVGVisualizer() {
     const totalTime = audio.duration;
     const currentTime = audio.currentTime;
     const progressRatio = currentTime / totalTime;
-    const x = progressRatio * 600;
-    const y = (1 - progressRatio) * 400;
+
+    const startX = 0;
+    const startY = containerHeight;
+    const endX = containerWidth;
+    const endY = 0;
+
+    // Calculate the current position based on progress
+    const x = startX + progressRatio * (endX - startX);
+    const y = startY - progressRatio * (startY - endY);
 
     dataArray.forEach((value, index) => {
-      const line = document.createElementNS(svgNS, "line");
       const height = value * 1.5;
       const xOffset = x - index * 2;
       const yOffset = y + index * 2;
 
-      line.setAttribute("x1", xOffset);
-      line.setAttribute("y1", yOffset);
-      line.setAttribute("x2", xOffset + 2);
-      line.setAttribute("y2", yOffset - height);
+      // Draw the left channel
+      const line = document.createElementNS(svgNS, "line");
+      line.setAttribute("x1", Math.max(0, xOffset));
+      line.setAttribute("y1", Math.max(0, yOffset));
+      line.setAttribute("x2", Math.max(0, xOffset + 2));
+      line.setAttribute("y2", Math.max(0, yOffset - height));
       line.setAttribute("stroke", `rgba(${value}, 100, 150, 0.8)`);
       line.setAttribute("stroke-width", 1 + value / 255);
-
       lineGroup.appendChild(line);
     });
 
-    const playhead = document.createElementNS(svgNS, "circle");
-    playhead.setAttribute("cx", x);
-    playhead.setAttribute("cy", y);
-    playhead.setAttribute("r", 5);
-    playhead.setAttribute("fill", "red");
+    // Replace the circle with a small white square
+    const playhead = document.createElementNS(svgNS, "rect");
+    playhead.setAttribute("x", x - 2);
+    playhead.setAttribute("y", y - 2);
+    playhead.setAttribute("width", 4);
+    playhead.setAttribute("height", 4);
+    playhead.setAttribute("fill", "white");
+    playhead.setAttribute("stroke", "white");
+    playhead.setAttribute("stroke-width", 1);
 
     lineGroup.appendChild(playhead);
   }
 
   drawVisualizer();
 }
-
