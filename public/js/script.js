@@ -32,6 +32,11 @@ generateGridContent('.C-grid', sectionCContent);
 
 // PLAYER 
 
+// Declare variables globally
+let audioContext;
+let analyser;
+let dataArray;
+
 // Initialize the audio element
 const audio = new Audio('ASSETS/SOUNDS/NFT1_1.mp3');
 
@@ -62,11 +67,11 @@ playButton.addEventListener('click', () => {
     analyser.connect(audioContext.destination);
 
     // Start the visualization
-    drawVisualizer();
+    createSVGVisualizer();
   }
 
   if (audioContext.state === 'suspended') {
-    audioContext.resume();  // Resume audio context if it was suspended
+    audioContext.resume();  // Resume the audio context if it was suspended
   }
 
   audio.play();
@@ -97,86 +102,61 @@ function formatTime(time) {
 //===================================================================
 //===================================================================
 //===================================================================
-// AUDIO VISUALIZER // line 82
+// SVG-BASED AUDIO VISUALIZER
 
-document.addEventListener('DOMContentLoaded', () => {
-  let audioContext;
-  let analyser;
-  let dataArray;
+function createSVGVisualizer() {
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("viewBox", "0 0 600 400");
+  svg.setAttribute("width", "100%");
+  svg.setAttribute("height", "auto");
 
-  const canvas = document.getElementById('audio-visualizer-canvas');
-  const canvasCtx = canvas.getContext('2d');
+  const lineGroup = document.createElementNS(svgNS, "g");
+  svg.appendChild(lineGroup);
 
-  const playButton = document.getElementById('play-button');
-  const stopButton = document.getElementById('stop-button');
-
-  playButton.addEventListener('click', () => {
-    if (!audioContext) {
-      // Initialize the audio context on the first user interaction
-      audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-      // Initialize the analyser and connect it to the audio source
-      analyser = audioContext.createAnalyser();
-      analyser.fftSize = 256;
-      dataArray = new Uint8Array(analyser.frequencyBinCount);
-
-      const source = audioContext.createMediaElementSource(audio);
-      source.connect(analyser);
-      analyser.connect(audioContext.destination);
-
-      // Start the visualization
-      drawVisualizer();
-    }
-
-    if (audioContext.state === 'suspended') {
-      audioContext.resume();  // Resume the audio context if it was suspended
-    }
-
-    audio.play();
-    tranStatus.textContent = 'Playing';
-  });
-
-  stopButton.addEventListener('click', () => {
-    audio.pause();
-    audio.currentTime = 0; // Reset to the beginning
-    tranStatus.textContent = 'Stopped';
-  });
+  const container = document.querySelector('.A-column1');
+  container.innerHTML = ''; // Clear any existing canvas or SVG content
+  container.appendChild(svg);
 
   function drawVisualizer() {
     requestAnimationFrame(drawVisualizer);
 
     analyser.getByteFrequencyData(dataArray);
 
-    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+    while (lineGroup.firstChild) {
+      lineGroup.removeChild(lineGroup.firstChild);
+    }
 
-    const barWidth = canvas.width / dataArray.length;
     const totalTime = audio.duration;
     const currentTime = audio.currentTime;
+    const progressRatio = currentTime / totalTime;
+    const x = progressRatio * 600;
+    const y = (1 - progressRatio) * 400;
 
-    // Calculate the diagonal position
-    const progressRatio = currentTime / totalTime;  // 0 to 1 based on time
-    const x = progressRatio * canvas.width;
-    const y = (1 - progressRatio) * canvas.height;
-
-    // Loop through the data array and draw each line
     dataArray.forEach((value, index) => {
-      const height = value * 2;  // Scale the height of the line
-      const xOffset = x - index * barWidth;
-      const yOffset = y + index * barWidth;
+      const line = document.createElementNS(svgNS, "line");
+      const height = value * 1.5;
+      const xOffset = x - index * 2;
+      const yOffset = y + index * 2;
 
-      // Draw the line representing the audio data
-      canvasCtx.beginPath();
-      canvasCtx.moveTo(xOffset, yOffset);
-      canvasCtx.lineTo(xOffset + barWidth, yOffset - height);
-      canvasCtx.strokeStyle = `rgba(${value}, 100, 150, 0.8)`;  // Color with opacity
-      canvasCtx.lineWidth = 1 + value / 255;  // Line thickness varies with amplitude
-      canvasCtx.stroke();
+      line.setAttribute("x1", xOffset);
+      line.setAttribute("y1", yOffset);
+      line.setAttribute("x2", xOffset + 2);
+      line.setAttribute("y2", yOffset - height);
+      line.setAttribute("stroke", `rgba(${value}, 100, 150, 0.8)`);
+      line.setAttribute("stroke-width", 1 + value / 255);
+
+      lineGroup.appendChild(line);
     });
 
-    // Optionally: Draw a marker to show the playhead on the diagonal
-    canvasCtx.beginPath();
-    canvasCtx.arc(x, y, 5, 0, 2 * Math.PI);
-    canvasCtx.fillStyle = 'red';
-    canvasCtx.fill();
+    const playhead = document.createElementNS(svgNS, "circle");
+    playhead.setAttribute("cx", x);
+    playhead.setAttribute("cy", y);
+    playhead.setAttribute("r", 5);
+    playhead.setAttribute("fill", "red");
+
+    lineGroup.appendChild(playhead);
   }
-});
+
+  drawVisualizer();
+}
