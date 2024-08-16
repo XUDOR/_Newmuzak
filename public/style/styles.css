@@ -147,6 +147,14 @@ footer {
   margin: 0 auto;
 }
 
+.A-column1 svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 600px;
+  max-height: 400px;
+}
+
 /* Background animation */
 @keyframes backgroundAnimation {
   0% {
