@@ -48,9 +48,27 @@ tranStatus.textContent = 'Stopped';
 
 // Play button functionality
 playButton.addEventListener('click', () => {
+  if (!audioContext) {
+    // Initialize the audio context on the first user interaction
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Initialize the analyser and connect it to the audio source
+    analyser = audioContext.createAnalyser();
+    analyser.fftSize = 256;
+    dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+    const source = audioContext.createMediaElementSource(audio);
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    // Start the visualization
+    drawVisualizer();
+  }
+
   if (audioContext.state === 'suspended') {
     audioContext.resume();  // Resume audio context if it was suspended
   }
+
   audio.play();
   tranStatus.textContent = 'Playing';
 });
@@ -79,67 +97,86 @@ function formatTime(time) {
 //===================================================================
 //===================================================================
 //===================================================================
-// AUDIO VISUALIZER
+// AUDIO VISUALIZER // line 82
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize the audio context
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  let audioContext;
+  let analyser;
+  let dataArray;
 
-    // Initialize the analyser
-    const analyser = audioContext.createAnalyser();
-    analyser.fftSize = 256;  // Adjust size for more/less frequency data
-    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+  const canvas = document.getElementById('audio-visualizer-canvas');
+  const canvasCtx = canvas.getContext('2d');
 
-    // Connect the analyser to the audio element
-    const source = audioContext.createMediaElementSource(audio);
-    source.connect(analyser);
-    analyser.connect(audioContext.destination);
+  const playButton = document.getElementById('play-button');
+  const stopButton = document.getElementById('stop-button');
 
-    // Set up the canvas
-    const canvas = document.getElementById('audio-visualizer');
-    const canvasCtx = canvas.getContext('2d');
+  playButton.addEventListener('click', () => {
+    if (!audioContext) {
+      // Initialize the audio context on the first user interaction
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-    // Function to draw the visualization
-    function drawVisualizer() {
-        requestAnimationFrame(drawVisualizer);
+      // Initialize the analyser and connect it to the audio source
+      analyser = audioContext.createAnalyser();
+      analyser.fftSize = 256;
+      dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-        analyser.getByteFrequencyData(dataArray);
+      const source = audioContext.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(audioContext.destination);
 
-        canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const barWidth = canvas.width / dataArray.length;
-        const startX = 0;
-        const startY = canvas.height;
-
-        // Loop through the data array and draw each line
-        dataArray.forEach((value, index) => {
-            const height = value * 2;  // Scale the height of the line
-            const x = startX + index * barWidth;
-            const y = startY - height;
-
-            // Draw the line representing the audio data
-            canvasCtx.beginPath();
-            canvasCtx.moveTo(x, startY);
-            canvasCtx.lineTo(x, y);
-            canvasCtx.strokeStyle = `rgba(${value}, 100, 150, 0.8)`;  // Color with opacity
-            canvasCtx.lineWidth = 1 + value / 255;  // Line thickness varies with amplitude
-            canvasCtx.stroke();
-
-            // Add a blur effect
-            canvasCtx.shadowBlur = 10;
-            canvasCtx.shadowColor = `rgba(${value}, 100, 150, 0.5)`;
-
-            // Simulate the fall or decay effect by redrawing with decreased opacity
-            for (let i = 1; i <= 5; i++) {
-                canvasCtx.beginPath();
-                canvasCtx.moveTo(x, startY);
-                canvasCtx.lineTo(x, y + i * 5);  // Increment y to simulate fall
-                canvasCtx.strokeStyle = `rgba(${value}, 100, 150, ${0.8 - i * 0.15})`;
-                canvasCtx.stroke();
-            }
-        });
+      // Start the visualization
+      drawVisualizer();
     }
 
-    // Start the visualization
-    drawVisualizer();
+    if (audioContext.state === 'suspended') {
+      audioContext.resume();  // Resume the audio context if it was suspended
+    }
+
+    audio.play();
+    tranStatus.textContent = 'Playing';
+  });
+
+  stopButton.addEventListener('click', () => {
+    audio.pause();
+    audio.currentTime = 0; // Reset to the beginning
+    tranStatus.textContent = 'Stopped';
+  });
+
+  function drawVisualizer() {
+    requestAnimationFrame(drawVisualizer);
+
+    analyser.getByteFrequencyData(dataArray);
+
+    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const barWidth = canvas.width / dataArray.length;
+    const totalTime = audio.duration;
+    const currentTime = audio.currentTime;
+
+    // Calculate the diagonal position
+    const progressRatio = currentTime / totalTime;  // 0 to 1 based on time
+    const x = progressRatio * canvas.width;
+    const y = (1 - progressRatio) * canvas.height;
+
+    // Loop through the data array and draw each line
+    dataArray.forEach((value, index) => {
+      const height = value * 2;  // Scale the height of the line
+      const xOffset = x - index * barWidth;
+      const yOffset = y + index * barWidth;
+
+      // Draw the line representing the audio data
+      canvasCtx.beginPath();
+      canvasCtx.moveTo(xOffset, yOffset);
+      canvasCtx.lineTo(xOffset + barWidth, yOffset - height);
+      canvasCtx.strokeStyle = `rgba(${value}, 100, 150, 0.8)`;  // Color with opacity
+      canvasCtx.lineWidth = 1 + value / 255;  // Line thickness varies with amplitude
+      canvasCtx.stroke();
+    });
+
+    // Optionally: Draw a marker to show the playhead on the diagonal
+    canvasCtx.beginPath();
+    canvasCtx.arc(x, y, 5, 0, 2 * Math.PI);
+    canvasCtx.fillStyle = 'red';
+    canvasCtx.fill();
+  }
 });
